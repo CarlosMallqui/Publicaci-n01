@@ -1,0 +1,58 @@
+{% extends "./base.html"%}
+
+{% block title %} Gestión de cursos {% endblock %}
+
+{% block body %}
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Gestión de Cursos</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/registroCurso/" method="post">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="txtNombre" class="form-control" placeholder="Nombre" max="50">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="number" name="numCreditos" class="form-control" min="1" max="10" value="1">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success btn-block text-withe" value="Guardar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <h2>Listado de Cursos</h2>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>N°</th>
+                            <th>Cursos</th>
+                            <th>Créditos</th>
+                            <th colspan="2">Opciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for c in cursos %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{c.nombre}}</td>
+                            <td>{{c.credito}}</td>
+                            <td><a href="edicionCurso/{{c.id}}" class="btn btn-block btn-info">Editar</a></td>
+                            <td><a href="eliminacionCurso/{{c.id}}" class="btn btn-block btn-danger">Eliminar</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

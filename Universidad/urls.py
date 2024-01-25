@@ -24,5 +24,5 @@ urlpatterns = [
     path('eliminacionCurso/<int:id>', eliminar_curso),
     path('registroCurso/', registrar_curso),
     path('edicionCurso/<int:id>', edicion_curso),#para el boton editar
-    path('editarCurso/<int:id>', editar_curso), #para el formulario de edicion
+    #path('editarCurso/<int:id>', editar_curso), #para el formulario de edicion
 ]
